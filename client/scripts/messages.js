@@ -10,4 +10,19 @@ var Messages = {
   // TODO: Define methods which allow you to retrieve from,
   // add to, and generally interact with the messages.
 
+  getMessages: function() {
+    return Messages._data;
+  },
+  setMessages: function(data) {
+    Messages._data = data;
+  },
+  pushRoomMessages: function(roomname, message) {
+    if (Messages._data[roomname] === undefined) {
+      Messages._data[roomname] = [];
+    }
+    Messages._data.push(message);
+  }
+
+
+
 };
