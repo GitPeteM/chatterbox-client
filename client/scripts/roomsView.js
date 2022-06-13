@@ -18,6 +18,7 @@ var RoomsView = {
   render: function() {
     // TODO: Render out the list of rooms.
     // iterate over active
+    $('#roomSelector').empty();
     $('#roomSelector').append('<option value="' + 'newRoom' + '">' + 'New Room...' + '</option>');
     for (let name in Rooms._data) {
       this.renderRoom(name);
@@ -32,17 +33,21 @@ var RoomsView = {
   handleChange: function(event) {
     // TODO: Handle a user selecting a different room.
 
+    // Rooms.markSelected( $('#roomSelector').val())
+
     let currentSelected = $('#roomSelector').val();
     // call renderRoom on the newly selected room
-    console.log(currentSelected);
+    // console.log(currentSelected);
     // clear the messages loaded on the screen
-
     if ( currentSelected === 'newRoom') {
       // $('#rooms').append('<input type="text" id="inputRoom" name ="room">');
       $('#inputRoom').show();
     } else {
       $('#inputRoom').hide();
     }
+
+    MessagesView.render();
+
   },
 
   handleClick: function(event) {

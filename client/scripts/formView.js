@@ -7,22 +7,31 @@ var FormView = {
   $form: $('form'),
 
   initialize: function() {
+    // event listener for submit button, invoke handleSubmit
     FormView.$form.on('submit', FormView.handleSubmit);
+    $('#message').on('click', () => { FormView.setStatus(false); });
   },
 
   handleSubmit: function(event) {
     // Stop the browser from submitting the form
     event.preventDefault();
-
     // TODO: Currently, this is all handleSubmit does.
-    // Make this function actually send a message to the Parse API.
-
+    // Make this function actually send a message to the Parse API
+    let newText = $('#message').val();
     // create message object to hold current rendered Room, username at global, text in the form;
-      // text in the form === $('#message').val();
+    let newMessage = {
+      username: App.username,
+      text: newText,
+      roomname: $('#roomSelector').val()
+    };
+    // post using Parse.create(messageObj)
+    Parse.create(newMessage);
+    // MessagesView.render();
+    App.fetch();
+    // App.fetch(App.stopSpinner);
 
-    // post using Parse.create(createdMessageObj);
 
-    console.log('click!');
+    // console.log('click!');
   },
 
   setStatus: function(active) {

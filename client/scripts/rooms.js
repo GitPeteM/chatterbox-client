@@ -5,23 +5,18 @@
 var Rooms = {
 
   // TODO: Define how you want to store the list of rooms
-  _data: {},
+  _data: new Set(),
   //find which room is currently selected
   selected: 'lobby',
 
   // TODO: Define methods which allow you to add rooms, update the list,
   // mark a room as selected, etc.
-
-  getRoomMessages: function(roomname) {
-    return _data[roomname];
-  },
-
   markSelected: function(roomname) {
     Rooms.selected = roomname;
   },
 
   add: function(newRoomName) {
-    Rooms._data[newRoomName] = newRoomName;
+    Rooms._data.add(newRoomName);
   }
 
 };

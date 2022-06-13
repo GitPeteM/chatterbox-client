@@ -18,10 +18,13 @@ var App = {
     // Fetch initial batch of messages
     App.startSpinner();
     App.fetch(App.stopSpinner);
+    // setInterval here
+    setInterval(App.fetch, 3000);
 
     // TODO: Make sure the app loads data from the API
     // continually, instead of just once at the start.
   },
+
 
   fetch: function(callback = ()=>{}) {
     Parse.readAll((data) => {
@@ -35,9 +38,11 @@ var App = {
         }
       }
 
+      Messages.setMessages(data);
 
-
+      MessagesView.render();
       RoomsView.render();
+      callback();
       // TODO: Use the data to update Messages and Rooms
       // and re-render the corresponding views.
 
