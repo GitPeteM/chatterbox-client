@@ -14,4 +14,6 @@ var MessageView = {
       -->
     `)
 
+    // <div class="username">${username}</div>
+
 };
